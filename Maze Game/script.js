@@ -14,8 +14,8 @@ const mazeGrid = [
 ];
 
 //Player coordinates, used for collisions and rendering.
-let pX = 0;
-let pY = 0;
+let pX = 1;
+let pY = 1;
 
 //The setColor function takes in an id and a color and sets the HTML element with id "id" to have the background color of "color".
 const setColor = (id, color) => {
@@ -24,26 +24,20 @@ const setColor = (id, color) => {
 
 //The render function uses the above function to display the maze game on a 5x5 grid. The player is in the middle of this grid, and the grid extends to two spaces up, left, right, and down of the player.
 const render = () => {
-    for(var y = - 2; y <= 2; y ++)
-    {
-	for(var x = - 2; x <= 2; x ++)
-	{
+    for(var y = - 2; y <= 2; y ++) {
+	for(var x = - 2; x <= 2; x ++) {
 	    let curSpace = "#X" + x + "Y" + y;
 	    //console.log(curSpace);
-	    if(x === 0 && y === 0)
-	    {
+	    if(x === 0 && y === 0) {
 		setColor(curSpace, "blue");
 	    }
-	    else if(mazeGrid?.[y + pY + 1]?.[x + pX + 1] === 1) //Is this really the best solution?
-	    {
+	    else if(mazeGrid?.[y + pY]?.[x + pX]) { //Truthiness FTW
 		setColor(curSpace, "dimgray");
 	    }
-	    else if(mazeGrid?.[y + pY + 1]?.[x + pX + 1] === 0)
-	    {
+	    else if(mazeGrid?.[y + pY + 1]?.[x + pX + 1] === 0) {
 		setColor(curSpace, "peru");
 	    }
-	    else
-	    {
+	    else {
 		setColor(curSpace, "olivedrab");
 	    }
 	}
@@ -56,23 +50,19 @@ document.onkeyup = (e) => {
     let key = e.key;
     console.log(key);
 
-    if(key === "ArrowRight")
-    {
+    if(key === "ArrowRight") {
 	console.log("move right");
 	pX ++;
     }
-    else if(key === "ArrowUp")
-    {
+    else if(key === "ArrowUp") {
 	console.log("move up");
 	pY --;
     }
-    else if(key === "ArrowLeft")
-    {
+    else if(key === "ArrowLeft") {
 	console.log("move left");
 	pX --;
     }
-    else if(key === "ArrowDown")
-    {
+    else if(key === "ArrowDown") {
 	console.log("move down");
 	pY ++;
     }
