@@ -36,34 +36,36 @@ const applyMovement = (oldCoords, event) => {
 
 //The movementEvent function takes in an event identifier (moveLeft, moveUp, moveRight, and moveDown), processes pX and pY accordingly, and returns a new value equivalent to player movement in the direction specified by the event identifier.
 const movementEvent = (coords, event) => {
-    let toReturn = {
-	x: 0,
-	y: 0
-    };
-    
     if(event === "moveLeft") {
-	toReturn.x = coords.x - 1;
-	toReturn.y = coords.y;
+	return {
+	   x: coords.x - 1,
+	   y: coords.y
+	};
     }
     else if(event === "moveRight") {
-	toReturn.x = coords.x + 1;
-	toReturn.y = coords.y;
+	return {
+	   x: coords.x + 1,
+	   y: coords.y
+	};
     }
     else if(event === "moveUp") {
-	toReturn.x = coords.x;
-	toReturn.y = coords.y - 1;
+	return {
+	   x: coords.x,
+	   y: coords.y - 1
+	};
     }
     else if(event === "moveDown") {
-	toReturn.x = coords.x;
-	toReturn.y = coords.y + 1;
+	return {
+	   x: coords.x,
+	   y: coords.y + 1
+	};
     }
     else {
-	toReturn.x = coords.x;
-	toReturn.y = coords.y;
-	console.error("Invalid movement event identifier: " + event);
+	return {
+	   x: coords.x,
+	   y: coords.y
+	}
     }
-
-    return toReturn;
 }
 
 //The render function uses the above function to display the maze game on a 5x5 grid. The player is in the middle of this grid, and the grid extends to two spaces up, left, right, and down of the player.
